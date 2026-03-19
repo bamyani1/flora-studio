@@ -6,7 +6,7 @@
 |-------|--------|---------|-----------|---------|
 | A — Foundation | DONE | 2026-03-19 | 2026-03-19 | All infrastructure scaffolded, builds clean |
 | B — Layout Shell | DONE | 2026-03-19 | 2026-03-19 | Header, Footer, MobileMenu, transitions, stub pages, BackToTop |
-| C — Animation Primitives | NOT STARTED | — | — | — |
+| C — Animation Primitives | DONE | 2026-03-19 | 2026-03-19 | All animation wrappers + hooks, reduced motion support |
 | D — Home Page | NOT STARTED | — | — | — |
 | E — Work & Album Pages | NOT STARTED | — | — | — |
 | F — About & Contact | NOT STARTED | — | — | — |
@@ -59,17 +59,18 @@
 
 ## Phase C — Animation Primitives
 
-- [ ] `src/components/animations/FadeIn.tsx`
-- [ ] `src/components/animations/TextReveal.tsx`
-- [ ] `src/components/animations/ImageReveal.tsx`
-- [ ] `src/components/animations/ParallaxSection.tsx`
-- [ ] `src/components/animations/MagneticButton.tsx`
-- [ ] `src/components/animations/ClipReveal.tsx`
-- [ ] `src/hooks/useReducedMotion.ts`
-- [ ] `src/hooks/useMagnetic.ts`
-- [ ] `src/hooks/useMediaQuery.ts`
-- [ ] `src/hooks/useLenis.ts`
-- [ ] All animations respect `prefers-reduced-motion`
+- [x] `src/components/animations/FadeIn.tsx` — scroll-triggered fade-up entrance
+- [x] `src/components/animations/TextReveal.tsx` — SplitText line/word reveal
+- [x] `src/components/animations/ImageReveal.tsx` — overlay + scale image reveal
+- [x] `src/components/animations/ParallaxSection.tsx` — scroll-linked Y parallax
+- [x] `src/components/animations/MagneticButton.tsx` — cursor-following magnetic effect
+- [x] `src/components/animations/ClipReveal.tsx` — clip-path wipe reveal
+- [x] `src/hooks/useReducedMotion.ts` — SSR-safe prefers-reduced-motion detection
+- [x] `src/hooks/useMagnetic.ts` — cursor proximity GSAP translation
+- [x] `src/hooks/useMediaQuery.ts` — SSR-safe media query matching
+- [x] ~~`src/hooks/useLenis.ts`~~ — SKIPPED: `useLenis()` from `lenis/react` already in use
+- [x] All animations respect `prefers-reduced-motion`
+- [x] `npm run build` passes clean
 
 ## Phase D — Home Page
 

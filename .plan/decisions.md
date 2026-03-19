@@ -9,3 +9,5 @@ Append-only. Never edit existing entries — only add new rows.
 | 3 | A | Sanity project not created on sanity.io — schemas only | No Sanity credentials yet; schemas/client/queries are ready, just needs project ID in .env |
 | 4 | B | Header/nav-link styles in globals.css instead of styled-jsx | styled-jsx is unreliable in Next.js App Router client components; globals.css is simpler and more predictable |
 | 5 | B | Footer is pure Server Component (no animation wrappers yet) | Plan defers animation wrappers to Phase C; keeps Footer simple for now |
+| 6 | C | Skipped `src/hooks/useLenis.ts` | `useLenis()` from `lenis/react` already imported in BackToTop and MobileMenu — custom wrapper adds no value |
+| 7 | C | Added `as const` to splitConfig objects in animations.ts | SplitText constructor requires literal types for `type` and `mask` — without const assertion, TS widens to `string` |
