@@ -9,7 +9,7 @@
 | C — Animation Primitives | DONE | 2026-03-19 | 2026-03-19 | All animation wrappers + hooks, reduced motion support |
 | D — Home Page | DONE | 2026-03-19 | 2026-03-19 | Hero, ProjectGrid/Card, AboutTeaser, CategoriesStrip, ContactCTA, page assembly |
 | E — Work & Album Pages | DONE | 2026-03-19 | 2026-03-19 | Work index with filter tabs, album detail with hero/narrative/gallery/nav |
-| F — About & Contact | NOT STARTED | — | — | — |
+| F — About & Contact | DONE | 2026-03-19 | 2026-03-19 | About page (5 sections), Contact form with Zod + Resend, UI components |
 | G — Responsive & Mobile | NOT STARTED | — | — | — |
 | H — Polish & Ship | NOT STARTED | — | — | — |
 
@@ -106,15 +106,18 @@
 
 ## Phase F — About & Contact
 
-- [ ] `src/app/about/page.tsx` — bio, approach, services, socials
-- [ ] `src/app/contact/page.tsx` — form + info
-- [ ] `src/app/contact/action.ts` — Server Action (Zod + Resend)
-- [ ] `src/components/ui/Button.tsx`
-- [ ] `src/components/ui/Input.tsx`
-- [ ] `src/components/ui/Textarea.tsx`
-- [ ] `src/components/ui/Select.tsx`
-- [ ] `src/components/ui/ContactForm.tsx`
-- [ ] Form validates, submits, delivers email, shows success state
+- [x] `src/app/about/page.tsx` — bio, approach, services, socials
+- [x] `src/app/contact/page.tsx` — form + info
+- [x] `src/app/contact/action.ts` — Server Action (Zod + Resend)
+- [x] `src/components/ui/Button.tsx`
+- [x] `src/components/ui/Input.tsx`
+- [x] `src/components/ui/Textarea.tsx`
+- [x] `src/components/ui/Select.tsx`
+- [x] `src/components/ui/ContactForm.tsx`
+- [x] Form validates, submits, delivers email, shows success state
+- [x] `src/lib/validations.ts` — shared Zod schema for client + server
+- [x] `src/lib/placeholder-data.ts` — approach, services, socialLinks added
+- [x] `npm run build` passes clean
 
 ## Phase G — Responsive & Mobile
 

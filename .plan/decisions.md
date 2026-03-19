@@ -20,3 +20,8 @@ Append-only. Never edit existing entries — only add new rows.
 | 14 | E | Added delay prop to TextReveal instead of new component | Backward-compatible addition; enables choreographed AlbumHero entrance without a separate animation wrapper |
 | 15 | E | FilterableGrid uses CSS opacity fade, not GSAP Flip | 300ms CSS transition is simpler, respects prefers-reduced-motion via global rule, no Flip dependency |
 | 16 | E | Direct import for HorizontalScrollGallery instead of dynamic ssr:false | Next.js 16 disallows ssr:false in Server Components; direct import works because useGSAP handles SSR safely |
+| 17 | F | Zod schema in shared `src/lib/validations.ts` | Both ContactForm (client) and action.ts (server) import same schema — DRY, single source of truth |
+| 18 | F | Button builds all variants (primary/outline/ghost) now | Small component; outline/ghost needed in Phase H, prevents revisiting |
+| 19 | F | MagneticButton uses `as="div"` inside Button | Avoids nested `<button>` elements (invalid HTML) |
+| 20 | F | Server action graceful degradation without env vars | Logs submission and returns success when RESEND_API_KEY/CONTACT_EMAIL missing; allows dev/build without Resend |
+| 21 | F | About services — no thumbnails | Sanity about schema has services as {title, description} only; adding images is scope creep |
