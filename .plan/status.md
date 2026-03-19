@@ -11,7 +11,7 @@
 | E — Work & Album Pages | DONE | 2026-03-19 | 2026-03-19 | Work index with filter tabs, album detail with hero/narrative/gallery/nav |
 | F — About & Contact | DONE | 2026-03-19 | 2026-03-19 | About page (5 sections), Contact form with Zod + Resend, UI components |
 | G — Responsive & Mobile | DONE | 2026-03-19 | 2026-03-19 | Responsive tokens, mobile text, touch targets, image sizes, will-change |
-| H — Polish & Ship | NOT STARTED | — | — | — |
+| H — Polish & Ship | CODE COMPLETE | 2026-03-19 | — | SEO, a11y, 404, OG image, manifest; awaiting deploy + external services |
 
 ## Phase A — Foundation
 
@@ -135,17 +135,32 @@
 
 ## Phase H — Polish & Ship
 
-- [ ] Lighthouse Performance >= 90
-- [ ] Lighthouse Accessibility >= 95
-- [ ] All SEO metadata + JSON-LD validated
-- [ ] sitemap.xml + robots.txt
-- [ ] Custom 404 page
-- [ ] Favicons + web manifest
+### Code Complete
+- [x] `src/lib/metadata.ts` — shared base metadata + JSON-LD generators (LocalBusiness, ImageGallery, Person)
+- [x] All pages: enriched metadata with descriptions, title template
+- [x] JSON-LD structured data on Home, About, and Album pages
+- [x] `src/app/sitemap.ts` — dynamic sitemap (static + album routes)
+- [x] `src/app/robots.ts` — allow all, disallow /studio
+- [x] `src/app/not-found.tsx` — custom 404 with on-brand design
+- [x] `src/app/error.tsx` — error boundary with retry
+- [x] `src/app/opengraph-image.tsx` — edge-rendered branded OG image
+- [x] `public/manifest.webmanifest` — PWA manifest
+- [x] Skip-to-content link in layout.tsx
+- [x] `id="main-content"` on all page `<main>` elements
+- [x] Global focus-visible outline for all links and buttons
+- [x] Nav-link focus-visible underline animation
+- [x] Form success state: aria-live="polite" + role="status"
+- [x] Favicon/manifest references in root metadata
+- [x] `npm run build` passes clean
+
+### Requires External Setup
+- [ ] Favicon files (favicon.ico, apple-touch-icon.png, icon-192.png, icon-512.png) — need design assets
+- [ ] Lighthouse Performance >= 90 — needs production deployment
+- [ ] Lighthouse Accessibility >= 95 — needs production deployment
 - [ ] Cross-browser tested (Chrome, Firefox, Safari, Edge)
 - [ ] Deployed to Vercel
-- [ ] Sanity webhook for ISR revalidation
-- [ ] Google Analytics 4 configured
-- [ ] Console clean (zero warnings/errors)
+- [ ] Sanity webhook for ISR revalidation — needs Sanity project
+- [ ] Google Analytics 4 configured — needs GA4 property
 
 ## Key Technical Facts
 

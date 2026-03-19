@@ -29,3 +29,7 @@ Append-only. Never edit existing entries — only add new rows.
 | 23 | G | ProjectCard hover: no change for touch | Paused timeline has zero cost; overlay invisible on touch; tap navigates via TransitionLink |
 | 24 | G | No dynamic imports (kept from Phase E Decision #16) | Next.js 16 disallows ssr:false in Server Components; useGSAP handles SSR safely |
 | 25 | G | will-change via helper, not inline styles | Centralized pattern; prevents forgotten cleanup; matches spec's onStart/onComplete strategy |
+| 26 | H | Title template via metadata helper, not per-page "— Bamyan Storyworks" | baseMetadata uses `template: "%s — Bamyan Storyworks"` — DRY, consistent across all pages |
+| 27 | H | Global focus-visible in globals.css, not per-component classes | One CSS rule covers all links/buttons; Button.tsx aligned to match |
+| 28 | H | OG image uses edge runtime with no external font | Avoids font loading complexity; uses system serif fallback for branded look |
+| 29 | H | Phase H split into code-complete + external-setup | Favicon assets, Vercel deploy, Sanity webhook, GA4 need credentials/design assets not yet available |
