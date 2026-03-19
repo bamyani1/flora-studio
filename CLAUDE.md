@@ -6,7 +6,7 @@ Cinematic photography portfolio — moody, minimal, exhibition-grade.
 
 ## Current Phase
 
-**Phase B — Layout Shell** → `.plan/phase-b-layout-shell.md`
+**Phase C — Animation Primitives** → `.plan/phase-c-animation-primitives.md`
 
 ## Session Start Protocol
 

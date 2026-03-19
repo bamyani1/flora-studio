@@ -5,7 +5,7 @@
 | Phase | Status | Started | Completed | Summary |
 |-------|--------|---------|-----------|---------|
 | A — Foundation | DONE | 2026-03-19 | 2026-03-19 | All infrastructure scaffolded, builds clean |
-| B — Layout Shell | NOT STARTED | — | — | — |
+| B — Layout Shell | DONE | 2026-03-19 | 2026-03-19 | Header, Footer, MobileMenu, transitions, stub pages, BackToTop |
 | C — Animation Primitives | NOT STARTED | — | — | — |
 | D — Home Page | NOT STARTED | — | — | — |
 | E — Work & Album Pages | NOT STARTED | — | — | — |
@@ -40,17 +40,22 @@
 
 ## Phase B — Layout Shell
 
-- [ ] `src/components/layout/Header.tsx` — sticky, backdrop blur on scroll
-- [ ] `src/components/layout/Footer.tsx` — large CTA, social links
-- [ ] `src/components/layout/MobileMenu.tsx` — full-screen overlay, SplitText stagger
-- [ ] `src/components/layout/TransitionOverlay.tsx` — wipe/morph overlay
-- [ ] `src/components/layout/TransitionLink.tsx` — animated navigation
-- [ ] `src/components/layout/ScrollIndicator.tsx` — hero scroll indicator
-- [ ] `src/components/layout/BackToTop.tsx` — scroll-to-top button
-- [ ] Zustand wired for menu + transition state
-- [ ] Stub pages (Home, Work, About, Contact) with overlay wipe transitions
-- [ ] Header blur activates on scroll
-- [ ] Mobile nav works with full-screen overlay
+- [x] `src/components/layout/Header.tsx` — sticky, backdrop blur on scroll
+- [x] `src/components/layout/Footer.tsx` — large CTA, social links
+- [x] `src/components/layout/MobileMenu.tsx` — full-screen overlay, SplitText stagger
+- [x] `src/components/layout/TransitionOverlay.tsx` — wipe/morph overlay
+- [x] `src/components/layout/TransitionLink.tsx` — animated navigation
+- [x] `src/components/layout/ScrollIndicator.tsx` — hero scroll indicator
+- [x] `src/components/layout/BackToTop.tsx` — scroll-to-top button
+- [x] Zustand wired for menu + transition state
+- [x] Stub pages (Home, Work, About, Contact) with overlay wipe transitions
+- [x] Header blur activates on scroll
+- [x] Mobile nav works with full-screen overlay
+- [x] `src/lib/navigation.ts` — shared NAV_ITEMS + SOCIAL_LINKS
+- [x] `src/app/template.tsx` — page enter animation on route change
+- [x] `src/hooks/useFocusTrap.ts` — focus trapping for MobileMenu
+- [x] `src/providers/Providers.tsx` — refactored to `lenis/react` for shared instance
+- [x] `npm run build` passes clean
 
 ## Phase C — Animation Primitives
 
