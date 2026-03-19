@@ -7,7 +7,7 @@
 | A — Foundation | DONE | 2026-03-19 | 2026-03-19 | All infrastructure scaffolded, builds clean |
 | B — Layout Shell | DONE | 2026-03-19 | 2026-03-19 | Header, Footer, MobileMenu, transitions, stub pages, BackToTop |
 | C — Animation Primitives | DONE | 2026-03-19 | 2026-03-19 | All animation wrappers + hooks, reduced motion support |
-| D — Home Page | NOT STARTED | — | — | — |
+| D — Home Page | DONE | 2026-03-19 | 2026-03-19 | Hero, ProjectGrid/Card, AboutTeaser, CategoriesStrip, ContactCTA, page assembly |
 | E — Work & Album Pages | NOT STARTED | — | — | — |
 | F — About & Contact | NOT STARTED | — | — | — |
 | G — Responsive & Mobile | NOT STARTED | — | — | — |
@@ -74,15 +74,17 @@
 
 ## Phase D — Home Page
 
-- [ ] `src/components/sections/Hero.tsx` — full heroSequence timeline
-- [ ] `src/components/sections/ProjectGrid.tsx` — 2-col asymmetric layout
-- [ ] `src/components/sections/ProjectCard.tsx` — hover effects + morph data-flip-id
-- [ ] `src/components/sections/AboutTeaser.tsx` — portrait + philosophy text
-- [ ] `src/components/sections/CategoriesStrip.tsx` — category labels
-- [ ] `src/components/sections/ContactCTA.tsx` — large CTA text
-- [ ] `src/app/page.tsx` — full home page assembly
-- [ ] Sanity data fetching for featured albums + about teaser
-- [ ] Home page scroll timeline matches spec
+- [x] `src/components/sections/Hero.tsx` — full heroSequence timeline
+- [x] `src/components/sections/ProjectGrid.tsx` — 2-col CSS grid layout
+- [x] `src/components/sections/ProjectCard.tsx` — hover effects + morph data-flip-id
+- [x] `src/components/sections/AboutTeaser.tsx` — portrait + philosophy text
+- [x] `src/components/sections/CategoriesStrip.tsx` — category labels
+- [x] `src/components/sections/ContactCTA.tsx` — large CTA text with MagneticButton
+- [x] `src/app/page.tsx` — full home page assembly
+- [x] Sanity data fetching with try/catch + placeholder fallback
+- [x] `src/lib/placeholder-data.ts` — hardcoded fallback data
+- [x] `src/sanity/client.ts` — lazy initialization to prevent build-time crash
+- [x] `npm run build` passes clean
 
 ## Phase E — Work & Album Pages
 

@@ -11,3 +11,7 @@ Append-only. Never edit existing entries — only add new rows.
 | 5 | B | Footer is pure Server Component (no animation wrappers yet) | Plan defers animation wrappers to Phase C; keeps Footer simple for now |
 | 6 | C | Skipped `src/hooks/useLenis.ts` | `useLenis()` from `lenis/react` already imported in BackToTop and MobileMenu — custom wrapper adds no value |
 | 7 | C | Added `as const` to splitConfig objects in animations.ts | SplitText constructor requires literal types for `type` and `mask` — without const assertion, TS widens to `string` |
+| 8 | D | Hardcoded heroSequence timeline in Hero.tsx instead of generic interpreter | 7 GSAP calls using heroSequence timing values as source of truth; generic interpreter adds complexity with no reuse benefit |
+| 9 | D | Skipped heroSequence step 0 (grain-overlay) | GSAP cannot target `::after` pseudo-elements; grain overlay at 0.04 opacity is always present via CSS |
+| 10 | D | Gradient div placeholders instead of image files | No Sanity project ID yet; avoids binary placeholder files in repo |
+| 11 | D | Lazy Sanity client via Proxy | `createClient` throws at import time if `projectId` is undefined; lazy init defers to first fetch call where try/catch handles it |
