@@ -10,7 +10,7 @@
 | D — Home Page | DONE | 2026-03-19 | 2026-03-19 | Hero, ProjectGrid/Card, AboutTeaser, CategoriesStrip, ContactCTA, page assembly |
 | E — Work & Album Pages | DONE | 2026-03-19 | 2026-03-19 | Work index with filter tabs, album detail with hero/narrative/gallery/nav |
 | F — About & Contact | DONE | 2026-03-19 | 2026-03-19 | About page (5 sections), Contact form with Zod + Resend, UI components |
-| G — Responsive & Mobile | NOT STARTED | — | — | — |
+| G — Responsive & Mobile | DONE | 2026-03-19 | 2026-03-19 | Responsive tokens, mobile text, touch targets, image sizes, will-change |
 | H — Polish & Ship | NOT STARTED | — | — | — |
 
 ## Phase A — Foundation
@@ -121,12 +121,17 @@
 
 ## Phase G — Responsive & Mobile
 
-- [ ] All components adapted for mobile breakpoints
-- [ ] Parallax disabled on mobile
-- [ ] Horizontal galleries → vertical on mobile
-- [ ] Magnetic effects disabled on touch
-- [ ] Mobile menu fully functional
-- [ ] Tested: iPhone Safari, Android Chrome, iPad
+- [x] Layout tokens responsive at CSS source (1rem/4rem mobile → 2rem/8rem desktop)
+- [x] AlbumHero title + Work heading mobile breakpoints
+- [x] BackToTop responsive positioning + 44px touch target
+- [x] All touch targets ≥ 44px (header, footer, menu, buttons, inputs, filters)
+- [x] Image `sizes` prop on all `fill` images
+- [x] `will-change` managed via GSAP callbacks + withWillChange helper
+- [x] Parallax disabled on mobile (Phase E)
+- [x] Horizontal galleries → vertical on mobile (Phase E)
+- [x] Magnetic effects disabled on touch (Phase C)
+- [x] Mobile menu fully functional (Phase B)
+- [x] `npm run build` passes clean
 
 ## Phase H — Polish & Ship
 

@@ -25,3 +25,7 @@ Append-only. Never edit existing entries — only add new rows.
 | 19 | F | MagneticButton uses `as="div"` inside Button | Avoids nested `<button>` elements (invalid HTML) |
 | 20 | F | Server action graceful degradation without env vars | Logs submission and returns success when RESEND_API_KEY/CONTACT_EMAIL missing; allows dev/build without Resend |
 | 21 | F | About services — no thumbnails | Sanity about schema has services as {title, description} only; adding images is scope creep |
+| 22 | G | Responsive tokens at CSS source, not per-component md: classes | One change in globals.css fixes 20+ components; aligns with "design tokens as source of truth" |
+| 23 | G | ProjectCard hover: no change for touch | Paused timeline has zero cost; overlay invisible on touch; tap navigates via TransitionLink |
+| 24 | G | No dynamic imports (kept from Phase E Decision #16) | Next.js 16 disallows ssr:false in Server Components; useGSAP handles SSR safely |
+| 25 | G | will-change via helper, not inline styles | Centralized pattern; prevents forgotten cleanup; matches spec's onStart/onComplete strategy |

@@ -6,7 +6,7 @@ Cinematic photography portfolio — moody, minimal, exhibition-grade.
 
 ## Current Phase
 
-**Phase G — Responsive & Mobile** → `.plan/phase-g-responsive-mobile.md`
+**Phase H — Polish & Ship** → `.plan/phase-h-polish-ship.md`
 
 ## Session Start Protocol
 
