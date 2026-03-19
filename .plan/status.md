@@ -4,7 +4,7 @@
 
 | Phase | Status | Started | Completed | Summary |
 |-------|--------|---------|-----------|---------|
-| A — Foundation | NOT STARTED | — | — | — |
+| A — Foundation | DONE | 2026-03-19 | 2026-03-19 | All infrastructure scaffolded, builds clean |
 | B — Layout Shell | NOT STARTED | — | — | — |
 | C — Animation Primitives | NOT STARTED | — | — | — |
 | D — Home Page | NOT STARTED | — | — | — |
@@ -15,28 +15,28 @@
 
 ## Phase A — Foundation
 
-- [ ] Next.js 16 project scaffolded with TypeScript
-- [ ] `next.config.ts` configured (images, Sanity remote patterns)
-- [ ] `tsconfig.json` configured (paths: `@/*` → `./src/*`)
-- [ ] `package.json` with all dependencies installed
-- [ ] `.env.example` created
-- [ ] ESLint + Prettier configured
-- [ ] `src/styles/globals.css` — full design token system + grain overlay + Lenis CSS
-- [ ] `src/lib/fonts.ts` — Instrument Serif + Satoshi + JetBrains Mono
-- [ ] Font files downloaded to `public/fonts/` (Satoshi, JetBrains Mono)
-- [ ] `src/lib/gsap.ts` — centralized GSAP plugin registration
-- [ ] `src/lib/easings.ts` — easing token map
-- [ ] `src/lib/animations.ts` — named preset factories (all 18+ presets)
-- [ ] `src/lib/motion-features.ts` — LazyMotion domAnimation bundle
-- [ ] `src/lib/utils.ts` — cn(), lerp(), clamp()
-- [ ] `src/providers/Providers.tsx` — GSAP + Lenis + LazyMotion
-- [ ] `src/stores/ui-store.ts` — Zustand store (menuOpen, isTransitioning, etc.)
-- [ ] `src/types/` — project.ts, animation.ts, ui.ts, index.ts
-- [ ] `src/app/layout.tsx` — root layout with fonts + Providers
-- [ ] `src/app/page.tsx` — placeholder home page
-- [ ] Sanity project created + schemas (album, about)
-- [ ] `src/sanity/client.ts` + `src/sanity/queries.ts` + schemas
-- [ ] Dark page renders with smooth scroll, correct fonts, film grain visible
+- [x] Next.js 16 project scaffolded with TypeScript
+- [x] `next.config.ts` configured (images, Sanity remote patterns)
+- [x] `tsconfig.json` configured (paths: `@/*` → `./src/*`)
+- [x] `package.json` with all dependencies installed
+- [x] `.env.example` created
+- [x] ESLint + Prettier configured
+- [x] `src/styles/globals.css` — full design token system + grain overlay + Lenis CSS
+- [x] `src/lib/fonts.ts` — Instrument Serif + Satoshi + JetBrains Mono
+- [x] Font files downloaded to `public/fonts/` (Satoshi, JetBrains Mono)
+- [x] `src/lib/gsap.ts` — centralized GSAP plugin registration
+- [x] `src/lib/easings.ts` — easing token map
+- [x] `src/lib/animations.ts` — named preset factories (all 18+ presets)
+- [x] `src/lib/motion-features.ts` — LazyMotion domAnimation bundle
+- [x] `src/lib/utils.ts` — cn(), lerp(), clamp()
+- [x] `src/providers/Providers.tsx` — GSAP + Lenis + LazyMotion
+- [x] `src/stores/ui-store.ts` — Zustand store (menuOpen, isTransitioning, etc.)
+- [x] `src/types/` — project.ts, animation.ts, ui.ts, index.ts
+- [x] `src/app/layout.tsx` — root layout with fonts + Providers
+- [x] `src/app/page.tsx` — placeholder home page
+- [x] Sanity schemas created (album, about) — project not yet created on sanity.io
+- [x] `src/sanity/client.ts` + `src/sanity/queries.ts` + schemas
+- [x] Dark page renders with smooth scroll, correct fonts, film grain visible
 
 ## Phase B — Layout Shell
 
