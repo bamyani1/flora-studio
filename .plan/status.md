@@ -8,7 +8,7 @@
 | B — Layout Shell | DONE | 2026-03-19 | 2026-03-19 | Header, Footer, MobileMenu, transitions, stub pages, BackToTop |
 | C — Animation Primitives | DONE | 2026-03-19 | 2026-03-19 | All animation wrappers + hooks, reduced motion support |
 | D — Home Page | DONE | 2026-03-19 | 2026-03-19 | Hero, ProjectGrid/Card, AboutTeaser, CategoriesStrip, ContactCTA, page assembly |
-| E — Work & Album Pages | NOT STARTED | — | — | — |
+| E — Work & Album Pages | DONE | 2026-03-19 | 2026-03-19 | Work index with filter tabs, album detail with hero/narrative/gallery/nav |
 | F — About & Contact | NOT STARTED | — | — | — |
 | G — Responsive & Mobile | NOT STARTED | — | — | — |
 | H — Polish & Ship | NOT STARTED | — | — | — |
@@ -88,15 +88,21 @@
 
 ## Phase E — Work & Album Pages
 
-- [ ] `src/app/work/page.tsx` — album index with full grid
-- [ ] `src/app/work/[slug]/page.tsx` — album page template
-- [ ] `src/components/sections/HorizontalScrollGallery.tsx` — pinned horizontal scroll
-- [ ] `src/components/sections/NarrativeSection.tsx` — word-by-word scroll scrub
-- [ ] GSAP Flip shared element morph (ProjectCard → album hero)
-- [ ] `generateStaticParams` for SSG
-- [ ] `generateMetadata` for dynamic SEO
-- [ ] Next/Previous album navigation
-- [ ] Horizontal gallery converts to vertical on mobile
+- [x] `src/app/work/page.tsx` — album index with full grid
+- [x] `src/app/work/[slug]/page.tsx` — album page template
+- [x] `src/components/sections/HorizontalScrollGallery.tsx` — pinned horizontal scroll
+- [x] NarrativeSection skipped — TextReveal variant="words" scrub used directly
+- [x] GSAP Flip skipped — all transitions use wipe only
+- [x] `generateStaticParams` for SSG
+- [x] `generateMetadata` for dynamic SEO
+- [x] Next/Previous album navigation with wrap-around
+- [x] Horizontal gallery converts to vertical on mobile
+- [x] `src/components/sections/AlbumHero.tsx` — full-screen hero with ImageReveal
+- [x] `src/components/sections/AlbumNav.tsx` — prev/next navigation
+- [x] `src/components/sections/FilterableGrid.tsx` — category filter with CSS fade
+- [x] TextReveal delay prop for choreographed entrances
+- [x] ProjectCard switched from morph to wipe transition
+- [x] `npm run build` passes clean
 
 ## Phase F — About & Contact
 

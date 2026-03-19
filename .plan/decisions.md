@@ -15,3 +15,8 @@ Append-only. Never edit existing entries — only add new rows.
 | 9 | D | Skipped heroSequence step 0 (grain-overlay) | GSAP cannot target `::after` pseudo-elements; grain overlay at 0.04 opacity is always present via CSS |
 | 10 | D | Gradient div placeholders instead of image files | No Sanity project ID yet; avoids binary placeholder files in repo |
 | 11 | D | Lazy Sanity client via Proxy | `createClient` throws at import time if `projectId` is undefined; lazy init defers to first fetch call where try/catch handles it |
+| 12 | E | Skipped GSAP Flip — all transitions use wipe only | Flip morph adds complexity with no visual payoff for placeholder gradients; wipe is consistent and simpler |
+| 13 | E | Skipped NarrativeSection component — used TextReveal directly | TextReveal variant="words" scrub already provides word-by-word scroll-scrub; wrapper adds no value |
+| 14 | E | Added delay prop to TextReveal instead of new component | Backward-compatible addition; enables choreographed AlbumHero entrance without a separate animation wrapper |
+| 15 | E | FilterableGrid uses CSS opacity fade, not GSAP Flip | 300ms CSS transition is simpler, respects prefers-reduced-motion via global rule, no Flip dependency |
+| 16 | E | Direct import for HorizontalScrollGallery instead of dynamic ssr:false | Next.js 16 disallows ssr:false in Server Components; direct import works because useGSAP handles SSR safely |

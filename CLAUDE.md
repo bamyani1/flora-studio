@@ -6,7 +6,7 @@ Cinematic photography portfolio — moody, minimal, exhibition-grade.
 
 ## Current Phase
 
-**Phase E — Work & Album Pages** → `.plan/phase-e-work-album-pages.md`
+**Phase F — About & Contact** → `.plan/phase-f-about-contact.md`
 
 ## Session Start Protocol
 
