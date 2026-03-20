@@ -1,4 +1,4 @@
-# Silk Studio
+# Silk Road Studio
 
 Cinematic photography portfolio — moody, minimal, exhibition-grade.
 
