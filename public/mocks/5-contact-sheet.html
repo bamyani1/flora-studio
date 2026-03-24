@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Sheet — Senior Night | Silk Road Studio</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap');
+
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  :root {
+    --bg: #0d0d0d;
+    --surface: #1a1a1a;
+    --accent: #c4973b;
+    --accent-muted: #a07830;
+    --text: #f5f0eb;
+    --muted: #8b7355;
+    --border: #2e2e2e;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  html {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    min-height: 100vh;
+    background: var(--bg);
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Film grain overlay */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 200px 200px;
+  }
+
+  .label {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .display {
+    font-family: 'Georgia', serif;
+    font-weight: 300;
+    font-style: italic;
+  }
+
+  /* Page wrapper */
+  .page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 24px 80px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .header-label {
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  .header-title {
+    font-family: 'Georgia', serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 36px;
+    color: var(--text);
+    margin-bottom: 14px;
+    line-height: 1.2;
+  }
+
+  .header-meta {
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  /* Contact sheet wrapper with film edge */
+  .sheet-wrapper {
+    display: flex;
+    gap: 0;
+    position: relative;
+  }
+
+  /* Film edge strip */
+  .film-edge {
+    width: 28px;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg);
+    border-right: 1px solid var(--border);
+  }
+
+  .film-edge-text {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-family: 'Courier New', monospace;
+    font-size: 9px;
+    text-transform: uppercase;
+    color: var(--muted);
+    opacity: 0.15;
+    letter-spacing: 0.2em;
+    white-space: nowrap;
+    line-height: 28px;
+    user-select: none;
+  }
+
+  /* Sprocket holes */
+  .film-edge::before,
+  .film-edge::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    border: 1px solid var(--muted);
+    opacity: 0.1;
+    border-radius: 1px;
+  }
+
+  .film-edge::before { top: 12px; }
+  .film-edge::after { bottom: 12px; }
+
+  /* Contact sheet grid */
+  .contact-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+    background: var(--bg);
+  }
+
+  @media (max-width: 768px) {
+    .contact-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .header-title {
+      font-size: 28px;
+    }
+
+    .page {
+      padding: 40px 16px 60px;
+    }
+  }
+
+  /* Individual frame */
+  .frame {
+    position: relative;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    background: var(--surface);
+  }
+
+  .frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s var(--ease), filter 0.6s var(--ease);
+    filter: saturate(0.85) contrast(1.05);
+  }
+
+  .frame:hover img {
+    transform: scale(1.03);
+    filter: saturate(1) contrast(1.1);
+  }
+
+  /* Frame number */
+  .frame-number {
+    position: absolute;
+    bottom: 5px;
+    left: 7px;
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    opacity: 0.6;
+    z-index: 2;
+    pointer-events: none;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+  }
+
+  /* Selected pick indicator */
+  .frame.selected::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    z-index: 2;
+    box-shadow: 0 0 4px rgba(196, 151, 59, 0.5);
+  }
+
+  .frame.selected {
+    box-shadow: 0 0 0 1px rgba(196, 151, 59, 0.3);
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 48px;
+    text-align: center;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-line1 {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    opacity: 0.6;
+    line-height: 2;
+  }
+
+  .footer-line2 {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    opacity: 0.6;
+    line-height: 2;
+  }
+
+  /* ---- Lightbox ---- */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s var(--ease), visibility 0.5s;
+  }
+
+  .lightbox.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .lightbox-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(13, 13, 13, 0.95);
+  }
+
+  .lightbox-content {
+    position: relative;
+    z-index: 2;
+    max-width: 90vw;
+    max-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lightbox-img {
+    max-width: 90vw;
+    max-height: 85vh;
+    object-fit: contain;
+    display: block;
+    opacity: 0;
+    transform: scale(0.92);
+    transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+    filter: saturate(0.9) contrast(1.05);
+  }
+
+  .lightbox.active .lightbox-img {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .lightbox-img.fading {
+    opacity: 0;
+    transform: scale(0.97);
+    transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 24px;
+    right: 28px;
+    z-index: 3;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+    padding: 8px;
+    transition: color 0.3s ease;
+  }
+
+  .lightbox-close:hover {
+    color: var(--text);
+  }
+
+  .lightbox-frame-label {
+    position: absolute;
+    bottom: 28px;
+    left: 36px;
+    z-index: 3;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    opacity: 0.8;
+  }
+
+  /* Navigation zones */
+  .lightbox-nav {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+  }
+
+  .lightbox-nav-prev,
+  .lightbox-nav-next {
+    flex: 1;
+    cursor: pointer;
+    background: none;
+    border: none;
+    outline: none;
+  }
+
+  .lightbox-nav-prev { cursor: w-resize; }
+  .lightbox-nav-next { cursor: e-resize; }
+
+  /* Counter */
+  .lightbox-counter {
+    position: absolute;
+    bottom: 28px;
+    right: 36px;
+    z-index: 3;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    opacity: 0.5;
+    letter-spacing: 0.1em;
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <!-- Header -->
+  <header class="header">
+    <div class="header-label">Contact Sheet</div>
+    <h1 class="header-title">Senior Night</h1>
+    <div class="header-meta">7 Exposures &middot; Dayton, Ohio &middot; 2025</div>
+  </header>
+
+  <!-- Contact sheet with film edge -->
+  <div class="sheet-wrapper">
+    <!-- Film edge strip -->
+    <div class="film-edge">
+      <div class="film-edge-text" id="filmEdgeText"></div>
+    </div>
+
+    <!-- Grid -->
+    <div class="contact-grid" id="contactGrid"></div>
+  </div>
+
+  <!-- Footer processing stamp -->
+  <footer class="footer">
+    <div class="footer-line1">Processed by Silk Road Studio</div>
+    <div class="footer-line2">2025.03.15</div>
+  </footer>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-overlay" id="lightboxOverlay"></div>
+  <button class="lightbox-close" id="lightboxClose">&times;</button>
+  <div class="lightbox-nav">
+    <button class="lightbox-nav-prev" id="lightboxPrev" aria-label="Previous"></button>
+    <button class="lightbox-nav-next" id="lightboxNext" aria-label="Next"></button>
+  </div>
+  <div class="lightbox-content">
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+  </div>
+  <div class="lightbox-frame-label" id="lightboxLabel"></div>
+  <div class="lightbox-counter" id="lightboxCounter"></div>
+</div>
+
+<script>
+(function() {
+  var TOTAL = 7;
+  var SELECTED = [2, 4, 6];
+  var FRAME_IDS = [];
+  var IMAGE_PATHS = [];
+  var i;
+
+  for (i = 1; i <= TOTAL; i++) {
+    var num = i < 10 ? '0' + i : '' + i;
+    FRAME_IDS.push(num + 'A');
+    IMAGE_PATHS.push('/images/senior-night/' + num + '.jpg');
+  }
+
+  function isSelected(n) {
+    for (var s = 0; s < SELECTED.length; s++) {
+      if (SELECTED[s] === n) return true;
+    }
+    return false;
+  }
+
+  // Build grid using safe DOM methods
+  var grid = document.getElementById('contactGrid');
+
+  for (i = 0; i < TOTAL; i++) {
+    var cell = document.createElement('div');
+    cell.className = 'frame';
+    if (isSelected(i + 1)) {
+      cell.className += ' selected';
+    }
+    cell.setAttribute('data-index', i);
+
+    var img = document.createElement('img');
+    img.src = IMAGE_PATHS[i];
+    img.alt = 'Frame ' + FRAME_IDS[i];
+    img.loading = 'lazy';
+    cell.appendChild(img);
+
+    var label = document.createElement('span');
+    label.className = 'frame-number';
+    label.textContent = FRAME_IDS[i];
+    cell.appendChild(label);
+
+    cell.addEventListener('click', (function(idx) {
+      return function() { openLightbox(idx); };
+    })(i));
+
+    grid.appendChild(cell);
+  }
+
+  // Build film edge text
+  var filmEdge = document.getElementById('filmEdgeText');
+  var edgeParts = [];
+  for (var r = 0; r < 8; r++) {
+    edgeParts.push('KODAK PORTRA 400');
+  }
+  filmEdge.textContent = edgeParts.join('      ');
+
+  // Lightbox
+  var lightbox = document.getElementById('lightbox');
+  var lightboxImg = document.getElementById('lightboxImg');
+  var lightboxLabel = document.getElementById('lightboxLabel');
+  var lightboxCounter = document.getElementById('lightboxCounter');
+  var currentIndex = -1;
+  var isOpen = false;
+  var isTransitioning = false;
+
+  function openLightbox(index) {
+    currentIndex = index;
+    isOpen = true;
+    showImage(index, false);
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    isOpen = false;
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+    currentIndex = -1;
+  }
+
+  function showImage(index, animate) {
+    if (animate && !isTransitioning) {
+      isTransitioning = true;
+      lightboxImg.classList.add('fading');
+      setTimeout(function() {
+        lightboxImg.src = IMAGE_PATHS[index];
+        lightboxImg.alt = 'Frame ' + FRAME_IDS[index];
+        lightboxLabel.textContent = FRAME_IDS[index];
+        lightboxCounter.textContent = (index + 1) + ' / ' + TOTAL;
+        currentIndex = index;
+        lightboxImg.classList.remove('fading');
+        setTimeout(function() { isTransitioning = false; }, 300);
+      }, 250);
+    } else {
+      lightboxImg.src = IMAGE_PATHS[index];
+      lightboxImg.alt = 'Frame ' + FRAME_IDS[index];
+      lightboxLabel.textContent = FRAME_IDS[index];
+      lightboxCounter.textContent = (index + 1) + ' / ' + TOTAL;
+      currentIndex = index;
+    }
+  }
+
+  function navigate(dir) {
+    if (!isOpen || isTransitioning) return;
+    var next = currentIndex + dir;
+    if (next < 0) next = TOTAL - 1;
+    if (next >= TOTAL) next = 0;
+    showImage(next, true);
+  }
+
+  // Event listeners
+  document.getElementById('lightboxOverlay').addEventListener('click', closeLightbox);
+  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+  document.getElementById('lightboxPrev').addEventListener('click', function(e) {
+    e.stopPropagation();
+    navigate(-1);
+  });
+  document.getElementById('lightboxNext').addEventListener('click', function(e) {
+    e.stopPropagation();
+    navigate(1);
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (!isOpen) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') navigate(-1);
+    if (e.key === 'ArrowRight') navigate(1);
+  });
+})();
+</script>
+
+</body>
+</html>
