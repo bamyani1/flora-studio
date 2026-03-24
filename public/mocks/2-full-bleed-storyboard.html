@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Senior Night — Silk Road Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  :root {
+    --bg: #121212;
+    --surface: #1a1a1a;
+    --primary: #c4973b;
+    --primary-muted: #a07830;
+    --text: #f5f0eb;
+    --muted: #8b7355;
+    --border: #2e2e2e;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  html {
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    background: var(--bg);
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  /* Film grain overlay */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+  }
+
+  /* Sections */
+  .frame {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    overflow: hidden;
+  }
+
+  .frame-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Dark gradient overlay */
+  .frame::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      transparent 40%,
+      rgba(18, 18, 18, 0.15) 70%,
+      rgba(18, 18, 18, 0.3) 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Image number */
+  .frame-number {
+    position: absolute;
+    bottom: 40px;
+    left: 48px;
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    font-size: 72px;
+    font-weight: 300;
+    color: var(--text);
+    opacity: 0.15;
+    z-index: 2;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    user-select: none;
+  }
+
+  /* Album info — first frame only */
+  .album-info {
+    position: absolute;
+    bottom: 80px;
+    left: 48px;
+    z-index: 3;
+    transition: opacity 0.8s var(--ease-out);
+  }
+
+  .album-info.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .album-title {
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 48px;
+    color: var(--text);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 12px;
+  }
+
+  .album-meta {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--muted);
+    line-height: 1;
+  }
+
+  /* Scroll hint */
+  .scroll-hint {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    text-align: center;
+    transition: opacity 0.6s var(--ease-out);
+  }
+
+  .scroll-hint.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .scroll-hint span {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--muted);
+    opacity: 0.6;
+  }
+
+  .scroll-hint span::after {
+    content: ' \2193';
+  }
+
+  /* Pulse animation for scroll hint */
+  @keyframes hintPulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 0.3; }
+  }
+
+  .scroll-hint span {
+    animation: hintPulse 2.4s ease-in-out infinite;
+  }
+
+  /* Progress dots */
+  .progress-dots {
+    position: fixed;
+    right: 28px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: center;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1.5px solid var(--border);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.4s var(--ease-out);
+    position: relative;
+  }
+
+  .dot:hover {
+    border-color: var(--primary-muted);
+    transform: scale(1.3);
+  }
+
+  .dot.active {
+    background: var(--primary);
+    border-color: var(--primary);
+    box-shadow: 0 0 8px rgba(196, 151, 59, 0.3);
+  }
+
+  /* Crossfade transition between frames */
+  .frame {
+    opacity: 1;
+    transition: opacity 0.1s ease;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .frame-number {
+      font-size: 48px;
+      bottom: 28px;
+      left: 24px;
+    }
+
+    .album-info {
+      bottom: 56px;
+      left: 24px;
+    }
+
+    .album-title {
+      font-size: 32px;
+    }
+
+    .album-meta {
+      font-size: 11px;
+    }
+
+    .progress-dots {
+      right: 16px;
+      gap: 12px;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Frame 01 -->
+<section class="frame" data-index="0">
+  <img class="frame-image" src="/images/senior-night/01.jpg" alt="Senior Night photograph 1" loading="eager">
+  <div class="album-info" id="albumInfo">
+    <h1 class="album-title">Senior Night</h1>
+    <p class="album-meta">Sports &middot; 2025 &middot; Dayton, Ohio</p>
+  </div>
+  <div class="scroll-hint" id="scrollHint">
+    <span>Scroll to explore</span>
+  </div>
+  <span class="frame-number">01</span>
+</section>
+
+<!-- Frame 02 -->
+<section class="frame" data-index="1">
+  <img class="frame-image" src="/images/senior-night/02.jpg" alt="Senior Night photograph 2" loading="lazy">
+  <span class="frame-number">02</span>
+</section>
+
+<!-- Frame 03 -->
+<section class="frame" data-index="2">
+  <img class="frame-image" src="/images/senior-night/03.jpg" alt="Senior Night photograph 3" loading="lazy">
+  <span class="frame-number">03</span>
+</section>
+
+<!-- Frame 04 -->
+<section class="frame" data-index="3">
+  <img class="frame-image" src="/images/senior-night/04.jpg" alt="Senior Night photograph 4" loading="lazy">
+  <span class="frame-number">04</span>
+</section>
+
+<!-- Frame 05 -->
+<section class="frame" data-index="4">
+  <img class="frame-image" src="/images/senior-night/05.jpg" alt="Senior Night photograph 5" loading="lazy">
+  <span class="frame-number">05</span>
+</section>
+
+<!-- Frame 06 -->
+<section class="frame" data-index="5">
+  <img class="frame-image" src="/images/senior-night/06.jpg" alt="Senior Night photograph 6" loading="lazy">
+  <span class="frame-number">06</span>
+</section>
+
+<!-- Frame 07 -->
+<section class="frame" data-index="6">
+  <img class="frame-image" src="/images/senior-night/07.jpg" alt="Senior Night photograph 7" loading="lazy">
+  <span class="frame-number">07</span>
+</section>
+
+<!-- Progress Dots -->
+<nav class="progress-dots" id="progressDots" aria-label="Image navigation"></nav>
+
+<script>
+(function () {
+  const frames = document.querySelectorAll('.frame');
+  const dotsContainer = document.getElementById('progressDots');
+  const albumInfo = document.getElementById('albumInfo');
+  const scrollHint = document.getElementById('scrollHint');
+  const totalFrames = frames.length;
+
+  // Build dots
+  frames.forEach(function (_, i) {
+    const dot = document.createElement('button');
+    dot.className = 'dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', 'Go to image ' + (i + 1));
+    dot.dataset.target = i;
+    dot.addEventListener('click', function () {
+      frames[i].scrollIntoView({ behavior: 'smooth' });
+    });
+    dotsContainer.appendChild(dot);
+  });
+
+  const dots = dotsContainer.querySelectorAll('.dot');
+
+  // Intersection Observer for active dot tracking
+  const observerOptions = {
+    root: null,
+    threshold: 0.55
+  };
+
+  let hasScrolled = false;
+
+  const observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        const index = parseInt(entry.target.dataset.index, 10);
+
+        // Update dots
+        dots.forEach(function (d) { d.classList.remove('active'); });
+        if (dots[index]) dots[index].classList.add('active');
+
+        // Hide album info + scroll hint after leaving first frame
+        if (index > 0 && !hasScrolled) {
+          hasScrolled = true;
+        }
+
+        if (index === 0) {
+          albumInfo.classList.remove('hidden');
+          if (!hasScrolled) scrollHint.classList.remove('hidden');
+        } else {
+          albumInfo.classList.add('hidden');
+          scrollHint.classList.add('hidden');
+        }
+      }
+    });
+  }, observerOptions);
+
+  frames.forEach(function (frame) {
+    observer.observe(frame);
+  });
+
+  // Hide scroll hint on any scroll
+  var scrollTimeout;
+  window.addEventListener('scroll', function () {
+    if (!hasScrolled) {
+      hasScrolled = true;
+      scrollHint.classList.add('hidden');
+    }
+  }, { passive: true });
+})();
+</script>
+</body>
+</html>
