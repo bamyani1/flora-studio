@@ -151,6 +151,13 @@ _Used when talking about:_ deliverables, value, client experience
 | Personal / Family    | **Portraits**    | "Everyone has something worth photographing."                                    |
 | Corporate / Headshot | **Professional** | "Clean, confident images for the work you do."                                   |
 
+**Category consolidation:** The category enum values differ across files:
+
+- `src/lib/validations.ts` has six values: `graduation`, `events`, `sports`, `personal`, `family`, `corporate`
+- `src/lib/categories.ts` and `src/sanity/schemas/album.ts` have four: `graduation`, `events`, `sports`, `personal`
+
+The rebrand unifies all to five new values: `milestones`, `gatherings`, `motion`, `portraits`, `professional`. For `validations.ts`, collapse `personal`/`family` → `portraits` and `corporate` → `professional`. For `categories.ts` and the Sanity schema, rename the four existing values and add `professional`.
+
 Contact form label: "What are we making together?"
 
 ---
@@ -193,7 +200,7 @@ Dark foundation stays. Accent shifts from generic gold to Deep Saffron.
 - **Concept:** A thin rectangular frame (photograph) with three organic threads growing from inside and pushing beyond its top edge. Seed-tip details at each thread end. Bold convergence point at the base.
 - **Meaning:** The craft outgrows the frame. Photography connection is in the rectangle; the threads are the studio's distinctive element.
 - **Usage:** Header (morph from wordmark on scroll), footer, OG image, favicon (simplified), business cards
-- **Wordmark:** "SAFFRON STUDIOS" in Cormorant Garamond, weight 400, letter-spacing 0.14em, uppercase
+- **Wordmark:** "SAFFRON STUDIOS" in Cormorant Garamond, weight 400, letter-spacing 0.12em (update `--tracking-hero` token and its comment in globals.css), uppercase
 - **Colors:** Deep Saffron (#c97b2a) mark on dark (#242820) background. Reversed version for light contexts.
 
 ### Assets to produce
@@ -326,6 +333,8 @@ Dark foundation stays. Accent shifts from generic gold to Deep Saffron.
 
 ## 11. Rollout Plan
 
+**Shipping strategy:** All code changes (Phases 1-3) are developed on a feature branch and ship together in a single deployment. There is no interim state where "Saffron Studios" text appears with the old aperture mark. The phasing below describes the order of development work, not separate deployments.
+
 ### Phase 1: Foundation (Week 1-2)
 
 - Finalize Three Threads Breaking the Frame as production SVG
@@ -334,26 +343,29 @@ Dark foundation stays. Accent shifts from generic gold to Deep Saffron.
 - Update `manifest.webmanifest` — app name, description
 - Generate new favicon, apple-touch-icon, PWA icons
 - Update `navigation.ts` — social links
+- Implement new logo mark SVG (header, footer, mobile menu, OG image)
+- Remove aperture mark component and replace with Three Threads
 - Register `saffronstudios.com`
 - Secure `@saffronstudios` on Instagram, Behance, LinkedIn
 
 ### Phase 2: Content (Week 2-3)
 
 - Rewrite all page copy (homepage, about, contact, work, process)
-- Update `categories.ts` — new names and descriptions
+- Update `categories.ts` and `validations.ts` — new category names and enum values
+- Update Sanity album schema category enum
 - Update contact form options
 - Update `placeholder-data.ts`
 - Rename process phases across components
 - Update OG image generation
-- Replace all "Silk Road Studio" string references
+- Search entire `src/` tree for "Silk Road", "silkroad", and "silkroadstudio" — update all remaining references
 
-### Phase 3: Visual (Week 3-4)
+### Phase 3: Polish & Verify (Week 3-4)
 
-- Implement new logo mark SVG in header, footer, mobile menu, OG
-- Remove aperture mark component
-- Update header wordmark and morph behavior
-- Clean up old logo files
+- Update header wordmark morph behavior for new mark
+- Clean up old logo files from repo root
 - Update email references
+- Verify no old brand references remain (grep sweep)
+- Cross-browser and mobile testing
 
 ### Phase 4: Launch (Week 4-5)
 
@@ -389,8 +401,10 @@ Dark foundation stays. Accent shifts from generic gold to Deep Saffron.
 - [ ] `public/manifest.webmanifest` — name, short_name, description
 - [ ] `src/lib/navigation.ts` — social link URLs
 - [ ] `src/lib/categories.ts` — Milestones, Gatherings, Motion, Portraits, Professional
+- [ ] `src/lib/validations.ts` — update category enum (collapse `personal`/`family` → `portraits`, `corporate` → `professional`)
 - [ ] `src/lib/placeholder-data.ts` — studio bio, approach text
 - [ ] `src/lib/fonts.ts` — remove unused alternative hero fonts if not needed
+- [ ] `src/sanity/schemas/album.ts` — update category enum to match new values
 
 ### Components
 
@@ -402,10 +416,15 @@ Dark foundation stays. Accent shifts from generic gold to Deep Saffron.
 - [ ] `src/components/landing/LandingEditorial.tsx` — heading, body, CTA
 - [ ] `src/components/landing/LandingFooter.tsx` — brand name, copyright
 - [ ] `src/components/landing/LandingStudio.tsx` — brand references
-- [ ] `src/app/opengraph-image.tsx` — mark, wordmark, tagline, color
+- [ ] `src/app/opengraph-image.tsx` — mark, wordmark, tagline, accent color (#c97b2a)
 - [ ] `src/components/ui/CinematicContactForm.tsx` — category dropdown, form label
 - [ ] `src/components/ui/InlineContactForm.tsx` — brand references
 - [ ] `src/components/heroes/HeroContact.tsx` — update aesthetic
+- [ ] `src/components/process-reference/ProcessHero.tsx` — brand references
+- [ ] `src/components/process-reference/ProcessContactForm.tsx` — category labels
+- [ ] `src/components/sections/QuoteBlock.tsx` — brand references
+- [ ] All hero variation components (`HeroReel`, `HeroOverprint`, `HeroSplice`, etc.) — update "SILK ROAD STUDIO" strings
+- [ ] `src/app/contact/action.ts` — email sender name
 
 ### Pages
 
@@ -413,13 +432,20 @@ Dark foundation stays. Accent shifts from generic gold to Deep Saffron.
 - [ ] `src/app/about/page.tsx` — manifesto, team, process, CTA
 - [ ] `src/app/contact/page.tsx` — heading, body, email, studio label
 - [ ] `src/app/work/page.tsx` — metadata, filter labels
+- [ ] `src/app/work/[slug]/page.tsx` — metadata brand references
+- [ ] `src/app/heroes/page.tsx` and `src/app/heroes/[slug]/page.tsx` — metadata
 - [ ] `src/app/process/page.tsx` — phase names, descriptions, metadata
 - [ ] `src/app/error.tsx` — brand references
 - [ ] `src/app/not-found.tsx` — brand references
 
+### Catch-all sweep
+
+- [ ] Search entire `src/` tree for "Silk Road", "silkroad", "silkroadstudio" — update all remaining references
+- [ ] Check `src/sanity/queries.ts` for any hardcoded brand references
+
 ### Cleanup
 
-- [ ] Delete old logo files from repo root (silkroadstudio-_.svg, logo-concept-_.svg, \*.jsx)
+- [ ] Delete old logo files from repo root (silkroadstudio-_.svg, logo-concept-_.svg, \*.jsx logo files)
 - [ ] Delete old logo directories (silk-road-logos/, logo-process/, illustrator-logo-design-updated/)
 - [ ] Remove deleted component references
 
