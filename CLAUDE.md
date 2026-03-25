@@ -1,6 +1,6 @@
-# Silk Road Studio
+# Saffron Studios
 
-Cinematic photography portfolio — moody, minimal, exhibition-grade.
+Photography portfolio — moody, minimal, exhibition-grade.
 
 **Sole developer project.** No team, no other contributors.
 
