@@ -59,7 +59,7 @@ scripts/.image-cache.json
 # Playwright MCP
 .playwright-mcp/
 
-# Claude Code
+# Editor config
 .claude/
 .superpowers/
-CLAUDE.local.md
+PROJECT.local.md
