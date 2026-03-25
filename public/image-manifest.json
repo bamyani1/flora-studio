@@ -39,6 +39,11 @@
     "width": 2400,
     "height": 1600
   },
+  "/images/contact-bg.jpg": {
+    "blurDataURL": "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACwAQCdASoKAAcABUB8JZwAAp0QGDgAAP7ZX4006wE5bm0C6iAjvHXOPEkUAAAA",
+    "width": 8256,
+    "height": 5504
+  },
   "/images/golden-hour/01.jpg": {
     "blurDataURL": "data:image/webp;base64,UklGRkQAAABXRUJQVlA4IDgAAADQAQCdASoKAA8ABUB8JYgCdADdIZh0AAD+5pIaZW+Rtu7FAD1DGRAKhVv06XfOLB6G/Y+K/ztAAA==",
     "width": 1600,
@@ -75,9 +80,9 @@
     "height": 2400
   },
   "/images/golden-hour/hero.jpg": {
-    "blurDataURL": "data:image/webp;base64,UklGRkQAAABXRUJQVlA4IDgAAADQAQCdASoKAA8ABUB8JYgCdADdIZh0AAD+5pIaZW+Rtu7FAD1DGRAKhVv06XfOLB6G/Y+K/ztAAA==",
-    "width": 1600,
-    "height": 2400
+    "blurDataURL": "data:image/webp;base64,UklGRjQAAABXRUJQVlA4ICgAAACwAQCdASoKAAcABUB8JQBOgCHHb3MAAP7s2ThjVVCQcH4+NSYViAAA",
+    "width": 6000,
+    "height": 4000
   },
   "/images/graduation/01.jpg": {
     "blurDataURL": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAADQAQCdASoKABAABUB8JZgC7ADHl1MJQAD+bGMOFMPSzGGwyOYX+El8dQjUDnFFukYr02GSXwotHO0SQyJ6JUi55y6ZgcMThkCYAAAA",
@@ -120,9 +125,9 @@
     "height": 256
   },
   "/images/hero.jpg": {
-    "blurDataURL": "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAADQAQCdASoKAAcABUB8JYwAAqsB+FL/AAD+2VkYlrigpZeCSLsy8//wNzeQBRwA",
-    "width": 2400,
-    "height": 1600
+    "blurDataURL": "data:image/webp;base64,UklGRkIAAABXRUJQVlA4IDYAAADQAQCdASoKAAcABUB8JZQAAtx51Yag0AD+6f3tSZk9OQLmWRd4IGbzwwEMwxz7MIR0PK8DwAA=",
+    "width": 6000,
+    "height": 4000
   },
   "/images/high-country/01.jpg": {
     "blurDataURL": "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAADQAQCdASoKAAcABUB8JYwAAqsB+FL/AAD+2VkYlrigpZeCSLsy8//wNzeQBRwA",
@@ -233,6 +238,16 @@
     "blurDataURL": "data:image/webp;base64,UklGRkYAAABXRUJQVlA4IDoAAADwAQCdASoKAAcABUB8JbACdAEekgnCENgAy0srXmL6yAhxiVd3j0bcjj0Zx76EUyKwscpZI02+pEAA",
     "width": 2400,
     "height": 1600
+  },
+  "/images/landing-hero-poster.jpg": {
+    "blurDataURL": "data:image/webp;base64,UklGRlgAAABXRUJQVlA4IEwAAACQAwCdASoKABIAPzmEuVOvKKWisAgB4CcJZACdMoACfJEyiAvKAPjrn3F5E8ah6YGHRywGaqXZOIjUVhjYV8xCs6g9qs0zuDFzDAAA",
+    "width": 1440,
+    "height": 2560
+  },
+  "/images/landing-hero.jpg": {
+    "blurDataURL": "data:image/webp;base64,UklGRk4AAABXRUJQVlA4IEIAAADwAQCdASoKAA8ABUB8JbACdADdrNQQj0gA+EVUs55KyK2qTMZiRbTMlv9yLfIrG/2+COkC9ZA6OcID/Ej8U51lgAA=",
+    "width": 2560,
+    "height": 3840
   },
   "/images/march-madness/01.jpg": {
     "blurDataURL": "data:image/webp;base64,UklGRlIAAABXRUJQVlA4IEYAAADQAQCdASoKAA8ABUB8JYgAAt0NaksfUAD+7IU8ARp5IPmJ0xYQqMtScnbLs0M3CuJiGJuqdvk+/RMdRjQShByghi4BZAAA",
