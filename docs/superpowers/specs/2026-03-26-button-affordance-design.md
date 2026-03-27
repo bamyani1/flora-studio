@@ -2,7 +2,7 @@
 
 ## Context
 
-Audit of all buttons and interactive elements across Saffron Studios revealed that 9 elements lack proper visual affordance — they have no border, no background, or extremely faint borders, making them hard for users to recognize as clickable. The site's moody, minimal aesthetic caused several CTAs to drift into "decorative text" territory.
+Audit of all buttons and interactive elements across Bahar Studio revealed that 9 elements lack proper visual affordance — they have no border, no background, or extremely faint borders, making them hard for users to recognize as clickable. The site's moody, minimal aesthetic caused several CTAs to drift into "decorative text" territory.
 
 **Goal:** Add subtle borders to all 9 elements so they read as buttons, while preserving the editorial tone. Route 7 of 9 through the existing `Button` component for maximum consistency; handle 2 edge cases with direct edits.
 
@@ -107,7 +107,7 @@ Existing sizes (`sm`, `md`, `lg`) stay unchanged.
 **9. "Access" Card CTA**
 
 - File: `src/components/landing/LandingStudioCards.tsx` (line ~79)
-- Change: Restyle the inner "Access" text from `font-headline text-4xl italic border-b` to `font-label text-xs uppercase tracking-[0.2em] font-semibold border border-surface-deep/35 px-8 py-3`. Keep "Join the Studio" label above.
+- Change: Restyle the inner "Access" text from `font-headline text-4xl italic border-b` to `font-label text-xs uppercase tracking-[0.2em] font-semibold border border-surface-deep/35 px-8 py-3`. Keep "Join Bahar Studio" label above.
 - Reason: Card layout with label + title doesn't fit Button's single-child API.
 
 ## Files Modified
