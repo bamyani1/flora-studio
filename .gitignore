@@ -62,4 +62,5 @@ scripts/.image-cache.json
 # Editor config
 .claude/
 .superpowers/
+CLAUDE.md
 PROJECT.local.md
