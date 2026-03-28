@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 684.327 106.599">
+  <defs>
+    <style>
+      .cls-1 {
+        letter-spacing: .057em;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5 {
+        fill: #4d4d4d;
+      }
+
+      .cls-2 {
+        letter-spacing: .062em;
+      }
+
+      .cls-3 {
+        letter-spacing: .07em;
+      }
+
+      .cls-4 {
+        letter-spacing: .07em;
+      }
+
+      .cls-5 {
+        letter-spacing: .045em;
+      }
+
+      .cls-6 {
+        font-family: PFMarletDisplay-Regular, 'PF Marlet Display';
+        font-size: 89.843px;
+      }
+
+      .cls-7 {
+        letter-spacing: .059em;
+      }
+
+      .cls-7, .cls-8, .cls-9 {
+        fill: #666;
+      }
+
+      .cls-8 {
+        letter-spacing: .07em;
+      }
+
+      .cls-9 {
+        letter-spacing: .042em;
+      }
+    </style>
+  </defs>
+  <text class="cls-6" transform="translate(0 76.142)"><tspan class="cls-5" x="0" y="0">B</tspan><tspan class="cls-4" x="56.78" y="0">A</tspan><tspan class="cls-2" x="117.962" y="0">H</tspan><tspan class="cls-1" x="185.523" y="0">A</tspan><tspan class="cls-3" x="245.539" y="0">R </tspan><tspan class="cls-9" x="338.075" y="0">S</tspan><tspan class="cls-7" x="392.34" y="0">T</tspan><tspan class="cls-8" x="445.079" y="0">UDIO</tspan></text>
+</svg>
