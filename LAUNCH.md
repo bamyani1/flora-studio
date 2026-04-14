@@ -1,4 +1,4 @@
-# Launch Checklist — studiobahar.com
+# Launch Checklist — floraohio.com
 
 ## Pre-launch Verification
 
@@ -12,22 +12,22 @@
 
 All must be set before first production deploy:
 
-| Variable | Value / Notes |
-|----------|---------------|
-| `NEXT_PUBLIC_SANITY_PROJECT_ID` | Your Sanity project ID |
-| `NEXT_PUBLIC_SANITY_DATASET` | `production` |
-| `NEXT_PUBLIC_SANITY_API_VERSION` | `2024-07-11` |
-| `SANITY_READ_TOKEN` | Viewer-level token (starts with `sk`) |
-| `ICLOUD_SMTP_USER` | iCloud mailbox address |
-| `ICLOUD_SMTP_PASS` | App-specific password (not your iCloud password) |
-| `CONTACT_EMAIL` | `info@studiobahar.com` |
-| `NEXT_PUBLIC_SITE_URL` | `https://studiobahar.com` |
-| `NEXT_PUBLIC_ENABLE_COOKIE_CONSENT` | `true` (if launching with consent banner) |
+| Variable                            | Value / Notes                                    |
+| ----------------------------------- | ------------------------------------------------ |
+| `NEXT_PUBLIC_SANITY_PROJECT_ID`     | Your Sanity project ID                           |
+| `NEXT_PUBLIC_SANITY_DATASET`        | `production`                                     |
+| `NEXT_PUBLIC_SANITY_API_VERSION`    | `2024-07-11`                                     |
+| `SANITY_READ_TOKEN`                 | Viewer-level token (starts with `sk`)            |
+| `ICLOUD_SMTP_USER`                  | iCloud mailbox address                           |
+| `ICLOUD_SMTP_PASS`                  | App-specific password (not your iCloud password) |
+| `CONTACT_EMAIL`                     | `info@floraohio.com`                             |
+| `NEXT_PUBLIC_SITE_URL`              | `https://floraohio.com`                          |
+| `NEXT_PUBLIC_ENABLE_COOKIE_CONSENT` | `true` (if launching with consent banner)        |
 
 ## DNS & Domain
 
-- [ ] `studiobahar.com` A/CNAME records point to Vercel
-- [ ] `www.studiobahar.com` redirect to apex verified (configured in vercel.json)
+- [ ] `floraohio.com` A/CNAME records point to Vercel
+- [ ] `www.floraohio.com` redirect to apex verified (configured in vercel.json)
 - [ ] SSL certificate provisioned automatically by Vercel
 - [ ] HSTS header active (2-year max-age with preload, configured in vercel.json)
 
@@ -42,8 +42,8 @@ All must be set before first production deploy:
 
 ## Sanity CMS
 
-- [ ] Studio accessible at studiobahar.com/studio
-- [ ] CORS configured for `https://studiobahar.com` in Sanity dashboard
+- [ ] Studio accessible at floraohio.com/studio
+- [ ] CORS configured for `https://floraohio.com` in Sanity dashboard
 - [ ] All albums have title, description, cover image, hero image
 - [ ] Featured album(s) configured
 - [ ] About page content populated
@@ -52,7 +52,7 @@ All must be set before first production deploy:
 ## Contact Form
 
 - [ ] iCloud SMTP credentials verified (app-specific password)
-- [ ] Contact form tested end-to-end in production (receive email at info@studiobahar.com)
+- [ ] Contact form tested end-to-end in production (receive email at info@floraohio.com)
 - [ ] Form validation working (empty fields, invalid email)
 - [ ] Success and error states display correctly
 
@@ -82,11 +82,11 @@ All must be set before first production deploy:
 
 Run `npm run lighthouse` to generate reports and fill in scores.
 
-| Page | Performance | Accessibility | Best Practices | SEO |
-|------|-------------|---------------|----------------|-----|
-| `/` (home) | 74 | 91 | 96 | 100 |
-| `/work` (gallery) | 75 | 96 | 96 | 100 |
-| `/contact` | 75 | 100 | 96 | 100 |
+| Page              | Performance | Accessibility | Best Practices | SEO |
+| ----------------- | ----------- | ------------- | -------------- | --- |
+| `/` (home)        | 74          | 91            | 96             | 100 |
+| `/work` (gallery) | 75          | 96            | 96             | 100 |
+| `/contact`        | 75          | 100           | 96             | 100 |
 
 _Scores recorded 2026-03-31 via `npm run lighthouse` (mobile, simulated throttling)._
 

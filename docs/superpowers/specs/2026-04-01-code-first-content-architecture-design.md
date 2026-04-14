@@ -4,7 +4,7 @@
 
 The site fetches ~65 text fields from Sanity CMS at runtime (page copy, brand name, CTAs, descriptions, team info, process steps). This creates two problems:
 
-1. **Rebrand failure**: After renaming "Bahar Studio" to "Studio Bahar" in code, the contact page still shows the old name because `studioName` comes from Sanity, which wasn't updated.
+1. **Rebrand failure**: After renaming "Flora Studio" to "Flora Studio" in code, the contact page still shows the old name because `studioName` comes from Sanity, which wasn't updated.
 2. **Split source of truth**: Some text lives in code (metadata, legal, footers, email templates), some in Sanity. Changes require editing two systems.
 
 ## Decision
@@ -215,7 +215,7 @@ After the change:
 3. `npm run test:unit` — all pass (after test rewrite)
 4. `npm run test:e2e` — all pass
 5. `npm run build` — production build succeeds
-6. Manual: contact page shows "STUDIO BAHAR" (from code, not Sanity)
+6. Manual: contact page shows "FLORA STUDIO" (from code, not Sanity)
 7. Manual: all pages render correct text without Sanity connection
 8. Manual: albums still load from Sanity
 9. Manual: `/studio` still works for album management
